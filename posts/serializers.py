@@ -10,9 +10,10 @@ class PostSerializer(serializers.ModelSerializer):
 
     # built in rest framework validation uses "validate_[field name]"
     def validate_image(self, value):
-        if value.size > 1024 * 1024 * 2: #2MB file size limit
-        raise serializers.ValidationError(
-            'Image size larger than 2MB'
+        if value.size > 1024 * 1024 * 2:
+            #2MB file size limit 
+            raise serializers.ValidationError(
+                'Image size larger than 2MB'
             )
         if value.image.width > 4096:
             raise serializers.ValidationError(
