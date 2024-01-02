@@ -1,8 +1,8 @@
-from django.contrib import IntegrityError
+from django.db import IntegrityError
 from rest_framework import serializers 
 from .models import Likes
 
-class PostSerializer(serializers.ModelSerializer):
+class LikeSerializer(serializers.ModelSerializer):
     # this can be treated like a model form, add extra fields as required
     owner = serializers.ReadOnlyField(source='owner.username')
 
@@ -16,7 +16,7 @@ class PostSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
         try: 
             return super().create(validated_data)
-        except: IntegrityError:
+        except IntegrityError:
             raise serializers.ValidationError({
                 'detail':'possible duplicate'
             })
