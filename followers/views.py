@@ -14,7 +14,7 @@ class FollowerList(generics.ListCreateAPIView):
         # this associates a user with the follow
         serializer.save(owner=self.request.user)
 
-class LikeDetail(generics.RetrieveDestroyAPIView):
+class FollowerDetail(generics.RetrieveDestroyAPIView):
     # List takes care of GET, DELETE methods as used in POST views.py
     permission_classes = [IsOwnerOrReadOnly]
     serializer_class = FollowSerializer
